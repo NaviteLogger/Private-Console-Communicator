@@ -4,6 +4,6 @@
 import sqlite3
 
 # Connect to the database
-conn = sqlite3.connect("database.db")
+conn = sqlite3.connect("../database/connections.db")
 
 # Create the tables
