@@ -18,3 +18,7 @@ def generate_key_pair_for_client():
     )
 
     return private_key, serialized_public_key
+
+def store_active_connections(public_key, address, port):
+    # Create a cursor to perform database operations
+    cursor = connection.cursor()
