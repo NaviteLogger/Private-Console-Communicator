@@ -40,44 +40,23 @@ def generate_key_pair_for_client():
     return private_key, serialized_public_key
 
 
-def store_active_connections(public_key, address, port):
-    # Establish a connection to the database
-    connection = connect()
-
-    # Create a cursor to perform database operations
-    cursor = connection.cursor()
-
+def store_active_connections(cursor, public_key, address, port):
     # Insert the public key, address and port of the client into the database
     cursor.execute(
         "INSERT INTO active_connections (public_key, address, port) VALUES (%s, %s, %s)",
         (public_key, address, port),
     )
 
-    # Commit the changes to the database
-    connection.commit()
 
-    # Close the cursor and connection
-    cursor.close()
-    connection.close()
-
-def get_active_connections():
-    # Establish a connection to the database
-    connection = connect()
-
-    # Create a cursor to perform database operations
-    cursor = connection.cursor()
-
+def get_active_connections(cursor):
     # Get all active connections from the database
     cursor.execute("SELECT * FROM active_connections")
 
     # Fetch all the rows from the cursor
     active_connections = cursor.fetchall()
 
-    # Close the cursor and connection
-    cursor.close()
-    connection.close()
-
     return active_connections
+
 
 def remove_active_connection(public_key):
     # Establish a connection to the database
