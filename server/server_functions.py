@@ -14,5 +14,7 @@ def generate_key_pair_for_client():
     # Serialize the public key to send to the client
     serialized_public_key = public_key.public_bytes(
         encoding=serialization.Encoding.PEM,
-        format=serialization.PublicFormat.SubjectPublicKeyInfo
+        format=serialization.PublicFormat.SubjectPublicKeyInfo,
     )
+
+    return private_key, serialized_public_key
