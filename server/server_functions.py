@@ -46,3 +46,17 @@ def store_active_connections(public_key, address, port):
 
     # Create a cursor to perform database operations
     cursor = connection.cursor()
+
+    # Insert the public key, address and port of the client into the database
+    cursor.execute(
+        "INSERT INTO active_connections (public_key, address, port) VALUES (%s, %s, %s)",
+        (public_key, address, port),
+    )
+
+    # Commit the changes to the database
+    connection.commit()
+
+    # Close the cursor and connection
+    cursor.close()
+    connection.close()
+    
