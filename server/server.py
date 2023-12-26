@@ -30,6 +30,14 @@ cursor.execute(
     )"""
 )
 
+cursor.execute(
+    """
+    CREATE TABLE IF NOT EXISTS chat_rooms (
+        id INTEGER PRIMARY KEY,
+        name TEXT,
+    )"""
+)
+
 # Commit the changes to the database
 connection.commit()
 
