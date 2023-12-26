@@ -59,4 +59,22 @@ def store_active_connections(public_key, address, port):
     # Close the cursor and connection
     cursor.close()
     connection.close()
-    
+
+def get_active_connections():
+    # Establish a connection to the database
+    connection = connect()
+
+    # Create a cursor to perform database operations
+    cursor = connection.cursor()
+
+    # Get all active connections from the database
+    cursor.execute("SELECT * FROM active_connections")
+
+    # Fetch all the rows from the cursor
+    active_connections = cursor.fetchall()
+
+    # Close the cursor and connection
+    cursor.close()
+    connection.close()
+
+    return active_connections
