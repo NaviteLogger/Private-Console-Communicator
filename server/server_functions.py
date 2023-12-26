@@ -26,9 +26,7 @@ def connect():
 
 def generate_key_pair_for_client():
     # Generate an RSA key pair for the desired client
-    private_key = rsa.generate_private_key(
-        public_exponent=65537, key_size=2048, backend=default_backend()
-    )
+    private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048, backend=default_backend())
     public_key = private_key.public_key()
 
     # Serialize the public key to send to the client
@@ -60,6 +58,7 @@ def store_active_connections(public_key, address, port):
     cursor.close()
     connection.close()
 
+
 def get_active_connections():
     # Establish a connection to the database
     connection = connect()
@@ -79,6 +78,7 @@ def get_active_connections():
 
     return active_connections
 
+
 def remove_active_connection(public_key):
     # Establish a connection to the database
     connection = connect()
@@ -87,9 +87,7 @@ def remove_active_connection(public_key):
     cursor = connection.cursor()
 
     # Remove the active connection from the database
-    cursor.execute(
-        "DELETE FROM active_connections WHERE public_key = %s", (public_key,)
-    )
+    cursor.execute("DELETE FROM active_connections WHERE public_key = %s", (public_key,))
 
     # Commit the changes to the database
     connection.commit()
