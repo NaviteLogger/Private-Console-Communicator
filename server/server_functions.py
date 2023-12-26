@@ -2,8 +2,9 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import padding
-import psycopg2, os
+import psycopg2, os, socket, time
 from dotenv import load_dotenv
+from threading import Thread
 
 # Get the environment variables
 load_dotenv()
@@ -57,6 +58,11 @@ def store_connection(public_key, address, port):
     # Close the cursor and connection
     cursor.close()
     connection.close()
+
+
+def create_chat_room():
+    # Generate a unique chat_room_id
+    chat_room_id = "chat_" + str(hash(socket.gethostname() + str(time.time())))
 
 
 def get_active_connections():
