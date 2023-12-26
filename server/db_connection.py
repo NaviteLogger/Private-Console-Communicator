@@ -14,7 +14,7 @@ def connect():
             password=os.getenv("POSTGRESQL_DB_PASSWORD"),
             host=os.getenv("POSTGRESQL_DB_HOST"),
             port=os.getenv("POSTGRESQL_DB_PORT"),
-            database="postgres",
+            database=os.getenv("POSTGRESQL_DB_NAME"),
         )
         return connection
     except (Exception, psycopg2.Error) as error:
