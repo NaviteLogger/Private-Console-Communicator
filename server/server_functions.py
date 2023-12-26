@@ -41,5 +41,8 @@ def generate_key_pair_for_client():
 
 
 def store_active_connections(public_key, address, port):
+    # Establish a connection to the database
+    connection = connect()
+
     # Create a cursor to perform database operations
     cursor = connection.cursor()
