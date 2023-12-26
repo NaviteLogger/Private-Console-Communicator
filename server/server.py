@@ -7,15 +7,27 @@ connection = server_functions.connect()
 # Create a cursor to perform database operations
 cursor = connection.cursor()
 
-# Create the table to store active connections
+# Create the desired tables:
 cursor.execute(
     """
     CREATE TABLE IF NOT EXISTS connections (
         id INTEGER PRIMARY KEY,
         address TEXT,
-        port INTEGER
+        port INTEGER,
+        char_room_id TEXT,
     )
 """
+)
+
+cursor.execute(
+    """
+    CREATE TABLE IF NOT EXIST messages (
+        id INTEGER PRIMARY KEY,
+        sender_id INTEGER,
+        chat_room_id TEXT,
+        message TEXT,
+        FOREIGN KEY (sender_id) REFERENCES connections (id),
+    )"""
 )
 
 # Commit the changes to the database
