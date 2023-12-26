@@ -51,10 +51,6 @@ cursor.execute(
 # Commit the changes to the database
 connection.commit()
 
-# Close the cursor and connection for now
-cursor.close()
-connection.close()
-
 # Create a socket to listen for incoming connections
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((socket.gethostname(), 5555))

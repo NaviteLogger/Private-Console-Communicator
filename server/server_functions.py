@@ -39,13 +39,7 @@ def generate_key_pair_for_client():
     return private_key, serialized_public_key
 
 
-def store_connection(public_key, address, port):
-    # Establish a connection to the database
-    connection = connect()
-
-    # Create a cursor to perform database operations
-    cursor = connection.cursor()
-
+def store_connection(cursor, connection, public_key, address, port):
     # Insert the public key, address and port of the client into the database
     cursor.execute(
         "INSERT INTO active_connections (public_key, address, port) VALUES (%s, %s, %s)",
@@ -55,14 +49,20 @@ def store_connection(public_key, address, port):
     # Commit the changes to the database
     connection.commit()
 
-    # Close the cursor and connection
-    cursor.close()
-    connection.close()
-
 
 def create_chat_room():
     # Generate a unique chat_room_id
     chat_room_id = "chat_" + str(hash(socket.gethostname() + str(time.time())))
+
+    # Create a new chat room in the database
+    # Establish a connection to the database
+    connection = connect()
+
+    # Create a cursor to perform database operations
+    cursor = connection.cursor()
+
+    # Insert the chat room into the database
+    cursor.execute("INSERT INTO chat_rooms (chat_room_id) VALUES (%s)", (chat_room_id,))
 
 
 def get_active_connections():
