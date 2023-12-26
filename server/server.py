@@ -12,7 +12,6 @@ cursor.execute(
     """
     CREATE TABLE IF NOT EXISTS connections (
         id INTEGER PRIMARY KEY,
-        public_key TEXT,
         address TEXT,
         port INTEGER
     )
