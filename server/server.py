@@ -4,6 +4,23 @@ import socket
 # Connect to the database
 connection = server_functions.connect()
 
+# Create a cursor to perform database operations
+cursor = connection.cursor()
+
+# Create the table to store active connections
+cursor.execute(
+    """
+    CREATE TABLE IF NOT EXISTS connections (
+        id INTEGER PRIMARY KEY,
+        public_key TEXT,
+        address TEXT,
+        port INTEGER
+    )
+"""
+)
+
+# Commit the changes to the database
+connection.commit()
 
 # Create a socket to listen for incoming connections
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
