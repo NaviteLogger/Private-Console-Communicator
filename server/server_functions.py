@@ -9,6 +9,10 @@ def generate_key_pair_for_client():
     private_key = rsa.generate_private_key(
         public_exponent=65537, key_size=2048, backend=default_backend()
     )
+    public_key = private_key.public_key()
 
     # Serialize the public key to send to the client
-    serialized_public_key = public
+    serialized_public_key = public_key.public_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PublicFormat.SubjectPublicKeyInfo
+    )
