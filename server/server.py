@@ -3,3 +3,4 @@ import socket
 
 # Establish a connectio to the database
 connection = connect()
+
