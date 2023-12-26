@@ -22,7 +22,7 @@ cursor.execute(
 # Commit the changes to the database
 connection.commit()
 
-# Close the cursor and connection
+# Close the cursor and connection for now
 cursor.close()
 connection.close()
 
@@ -36,3 +36,4 @@ print("Server is listening for incoming connections...")
 while True:
     # Accept an incoming connection from a client
     client_socket, address = server_socket.accept()
+    print(f"Connection from {address} has been established!")
