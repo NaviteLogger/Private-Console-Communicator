@@ -2,6 +2,26 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import padding
+import psycopg2, os
+from dotenv import load_dotenv
+
+# Get the environment variables
+load_dotenv()
+
+
+# Connect to the PostgreSQL database
+def connect():
+    try:
+        connection = psycopg2.connect(
+            user=os.getenv("POSTGRESQL_DB_USER"),
+            password=os.getenv("POSTGRESQL_DB_PASSWORD"),
+            host=os.getenv("POSTGRESQL_DB_HOST"),
+            port=os.getenv("POSTGRESQL_DB_PORT"),
+            database=os.getenv("POSTGRESQL_DB_NAME"),
+        )
+        return connection
+    except (Exception, psycopg2.Error) as error:
+        print("Error while connecting to PostgreSQL database, error: ", error)
 
 
 def generate_key_pair_for_client():
@@ -18,6 +38,7 @@ def generate_key_pair_for_client():
     )
 
     return private_key, serialized_public_key
+
 
 def store_active_connections(public_key, address, port):
     # Create a cursor to perform database operations
