@@ -26,9 +26,10 @@ cursor.execute(
     CREATE TABLE IF NOT EXIST messages (
         id INTEGER PRIMARY KEY,
         sender_id INTEGER,
-        chat_room_id TEXT,
+        recipient_id INTEGER,
         message TEXT,
         FOREIGN KEY (sender_id) REFERENCES connections (id),
+        FOREIGN KEY (recipient_id) REFERENCES connections (id)
     )"""
 )
 
