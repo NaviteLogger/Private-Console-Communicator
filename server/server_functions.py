@@ -72,3 +72,8 @@ def store_message(sender_id, recipient_id, message, cursor, connection):
 def forward_message(sender_id, recipient_id, message, cursor, connection):
     # Forward the message to the recipient
     store_message(sender_id, recipient_id, message, cursor, connection)
+
+
+def handle_client(client_socket, client_id):
+    # Receive the client's public key, address and port
+    client_public_key = client_socket.recv(1024).decode()
