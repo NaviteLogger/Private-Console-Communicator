@@ -9,6 +9,10 @@ from cryptography.hazmat.primitives.asymmetric import rsa, padding
 def read_config():
     # Read the client configuration file
     config = configparser.ConfigParser()
+    config.read("config.ini")
+    
+    server_ip = config["Server"]["server_ip"]
+    server_port = int(config["Server"]["server_port"])
 
 def connect_to_server():
     # Create a socket to connect to the server
