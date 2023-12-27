@@ -11,8 +11,11 @@ def read_config():
     config = configparser.ConfigParser()
     config.read("config.ini")
 
+    print(f"Sections in the config file: {config.sections()}")
+
     server_ip = config["Server"]["server_ip"]
     server_port = int(config["Server"]["server_port"])
+    print(f"Read server_ip: {server_ip}, server_port: {server_port}")
 
     return server_ip, server_port
 
