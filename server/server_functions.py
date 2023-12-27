@@ -92,3 +92,11 @@ def handle_client(client_socket, client_id, cursor, connection):
 
             # Notify the client about starting a new conversation
             client_socket.send(f"CONVERSATION_STARTED {partner_id}".encode())
+        else:
+            # Store the encrypted message in the database for forwarding
+            cursor.execute("SELECT partner_id FROM connections WHERE id = ?", (client_id,))
+            partner_id = cursor.fetchone()[0]
+            store_message(client_id, partner_id, encrypted_message)
+
+            # Forward the message to the conversation partner
+            forward_message(client_id, partner_id, encrypted_message)
