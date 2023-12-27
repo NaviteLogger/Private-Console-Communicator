@@ -2,7 +2,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import padding
-import psycopg2, os, socket, time
+import os, socket, time, mysql.connector
 from dotenv import load_dotenv
 from threading import Thread
 
@@ -10,19 +10,17 @@ from threading import Thread
 load_dotenv()
 
 
-# Connect to the PostgreSQL database
+# Connect to the MySQL database
 def connect():
-    try:
-        connection = psycopg2.connect(
-            user=os.getenv("POSTGRESQL_DB_USER"),
-            password=os.getenv("POSTGRESQL_DB_PASSWORD"),
-            host=os.getenv("POSTGRESQL_DB_HOST"),
-            port=os.getenv("POSTGRESQL_DB_PORT"),
-            database=os.getenv("POSTGRESQL_DB_NAME"),
-        )
-        return connection
-    except (Exception, psycopg2.Error) as error:
-        print("Error while connecting to PostgreSQL database, error: ", error)
+    # Connect to the database
+    connection = mysql.connector.connect(
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
+    )
+
+    return connection
 
 
 def generate_key_pair_for_client():

@@ -23,7 +23,7 @@ cursor.execute(
 
 cursor.execute(
     """
-    CREATE TABLE IF NOT EXIST messages (
+    CREATE TABLE IF NOT EXISTS messages (
         id INTEGER PRIMARY KEY,
         sender_id INTEGER,
         recipient_id INTEGER,
