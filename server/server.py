@@ -15,7 +15,8 @@ cursor.execute(
         public_key TEXT,
         address TEXT,
         port INTEGER,
-
+        partner_id INTEGER,
+        FOREIGN KEY (partner_id) REFERENCES connections (id)
     )
 """
 )
@@ -30,7 +31,6 @@ cursor.execute(
         FOREIGN KEY (sender_id) REFERENCES connections (id),
     )"""
 )
-
 
 
 # Commit the changes to the database
