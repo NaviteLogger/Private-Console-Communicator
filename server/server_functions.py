@@ -73,3 +73,14 @@ def join_chat_room(client_id, chat_room_id, cursor, connection):
 
     # Commit the changes to the database
     connection.commit()
+
+
+def store_message(sender_id, chat_room_id, message, cursor, connection):
+    # Insert the message into the database
+    cursor.execute(
+        "INSERT INTO messages (sender_id, chat_room_id, message) VALUES (%s, %s, %s)",
+        (sender_id, chat_room_id, message),
+    )
+
+    # Commit the changes to the database
+    connection.commit()
