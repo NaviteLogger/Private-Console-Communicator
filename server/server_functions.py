@@ -42,7 +42,7 @@ def generate_key_pair_for_client():
 def store_connection(public_key, address, port, cursor, connection):
     # Insert the public key, address and port of the client into the database
     cursor.execute(
-        "INSERT INTO active_connections (public_key, address, port) VALUES (%s, %s, %s)",
+        "INSERT INTO connections (public_key, address, port) VALUES (%s, %s, %s)",
         (public_key, address, port),
     )
 
@@ -50,4 +50,9 @@ def store_connection(public_key, address, port, cursor, connection):
     connection.commit()
 
 
-
+def create_conversation(client_id, partner_id, cursor, connection):
+    # Create a conversation between the client and the partner
+    cursor.execute("UPDATE connections SET partner_id = ? WHERE id = ?", (partner_id, client_id))
+    cursor.execute("UPDATE connections SET partner_id = ? WHERE id = ?", (client_id, partner_id))
+    # Commit the changes to the database
+    connection.commit()
