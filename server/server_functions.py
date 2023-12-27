@@ -74,7 +74,7 @@ def forward_message(sender_id, recipient_id, message, cursor, connection):
     store_message(sender_id, recipient_id, message, cursor, connection)
 
 
-def handle_client(client_socket, client_id):
+def handle_client(client_socket, client_id, cursor, connection):
     # Receive the client's public key, address and port
     client_public_key = client_socket.recv(1024).decode()
 
@@ -83,3 +83,9 @@ def handle_client(client_socket, client_id):
         encrypted_message = client_socket.recv(1024)
         if not encrypted_message:
             break
+
+        # If the message is a new conversation request, create a conversation between the client and the partner
+        if encrypted_message.startswith(b"new_conversation"):
+            partner_id = int(encrypted_message.split()[1].decode())
+            create_conversation(client_id, partner_id, cursor, connection)
+            continue
