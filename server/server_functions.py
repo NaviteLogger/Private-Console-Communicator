@@ -62,3 +62,14 @@ def create_chat_room(cursor, connection):
     connection.commit()
 
     return chat_room_id
+
+
+def join_chat_room(client_id, chat_room_id, cursor, connection):
+    # Insert the client into the chat room
+    cursor.execute(
+        "INSERT INTO user_chat_rooms (client_id, chat_room_id) VALUES (%s, %s)",
+        (client_id, chat_room_id),
+    )
+
+    # Commit the changes to the database
+    connection.commit()
