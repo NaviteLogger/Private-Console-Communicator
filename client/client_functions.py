@@ -1,6 +1,4 @@
-import socket
-import configparser
-import threading
+import socket, configparser, os
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
@@ -9,7 +7,7 @@ from cryptography.hazmat.primitives.asymmetric import rsa, padding
 def read_config():
     # Read the client configuration file
     config = configparser.ConfigParser()
-    config.read("config.ini")
+    config.read(os.path.abspath("config.ini"))
 
     print(f"Sections in the config file: {config.sections()}")
 
