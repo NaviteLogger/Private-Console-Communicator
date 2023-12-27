@@ -84,3 +84,12 @@ def store_message(sender_id, chat_room_id, message, cursor, connection):
 
     # Commit the changes to the database
     connection.commit()
+
+
+def broadcast_message(chat_room_id, sender_id, message, cursor, connection):
+    # Get the other client in the chat room
+    cursor.execute(
+        "SELECT client_id FROM user_chat_rooms WHERE chat_room_id = %s",
+        (chat_room_id,),
+    )
+    other_client_id = cursor.fetchone()[0]
