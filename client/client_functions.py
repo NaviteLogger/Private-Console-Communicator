@@ -11,3 +11,11 @@ def send_message(sock, message, recipient_public_key):
 
     # Send the encrypted message to the server
     sock.send(encrypted_message)
+
+
+def connect_to_server():
+    # Create a socket to connect to the server
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.connect((socket.gethostname(), 5555))
+
+    return sock
