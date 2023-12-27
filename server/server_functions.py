@@ -67,3 +67,9 @@ def store_message(sender_id, recipient_id, message, cursor, connection):
 
     # Commit the changes to the database
     connection.commit()
+
+
+def forward_message(sender_id, recipient_id, message, cursor, connection):
+    # Forward the message to the recipient
+    cursor.execute("SELECT public_key FROM connections WHERE id = ?", (recipient_id,))
+    recipient_public_key = cursor.fetchone()[0]
