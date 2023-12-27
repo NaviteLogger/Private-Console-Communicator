@@ -12,9 +12,10 @@ cursor.execute(
     """
     CREATE TABLE IF NOT EXISTS connections (
         id INTEGER PRIMARY KEY,
+        public_key TEXT,
         address TEXT,
         port INTEGER,
-        char_room_id TEXT,
+
     )
 """
 )
@@ -30,23 +31,7 @@ cursor.execute(
     )"""
 )
 
-cursor.execute(
-    """
-    CREATE TABLE IF NOT EXISTS chat_rooms (
-        id INTEGER PRIMARY KEY,
-        chat_room_id TEXT,
-    )"""
-)
 
-cursor.execute(
-    """
-    CREATE TABLE IF NOT EXISTS user_chat_rooms (
-        user_id INTEGER,
-        chat_room_id TEXT,
-        FOREIGN KEY (user_id) REFERENCES connections (id),
-        FOREIGN KEY (chat_room_id) REFERENCES chat_rooms (id),
-        )"""
-)
 
 # Commit the changes to the database
 connection.commit()
