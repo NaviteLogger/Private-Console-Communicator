@@ -89,3 +89,6 @@ def handle_client(client_socket, client_id, cursor, connection):
             partner_id = int(encrypted_message.split()[1].decode())
             create_conversation(client_id, partner_id, cursor, connection)
             store_connection(client_public_key, client_socket.getpeername()[0], client_socket.getpeername()[1], cursor, connection)
+
+            # Notify the client about starting a new conversation
+            client_socket.send(f"CONVERSATION_STARTED {partner_id}".encode())
