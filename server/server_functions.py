@@ -50,46 +50,4 @@ def store_connection(public_key, address, port, cursor, connection):
     connection.commit()
 
 
-def create_chat_room(cursor, connection):
-    # Generate a unique chat_room_id
-    chat_room_id = "chat_" + str(hash(socket.gethostname() + str(time.time())))
 
-    # Create a new chat room in the database
-    # Insert the chat room into the database
-    cursor.execute("INSERT INTO chat_rooms (chat_room_id) VALUES (%s)", (chat_room_id,))
-
-    # Commit the changes to the database
-    connection.commit()
-
-    return chat_room_id
-
-
-def join_chat_room(client_id, chat_room_id, cursor, connection):
-    # Insert the client into the chat room
-    cursor.execute(
-        "INSERT INTO user_chat_rooms (client_id, chat_room_id) VALUES (%s, %s)",
-        (client_id, chat_room_id),
-    )
-
-    # Commit the changes to the database
-    connection.commit()
-
-
-def store_message(sender_id, chat_room_id, message, cursor, connection):
-    # Insert the message into the database
-    cursor.execute(
-        "INSERT INTO messages (sender_id, chat_room_id, message) VALUES (%s, %s, %s)",
-        (sender_id, chat_room_id, message),
-    )
-
-    # Commit the changes to the database
-    connection.commit()
-
-
-def broadcast_message(chat_room_id, sender_id, message, cursor, connection):
-    # Get the other client in the chat room
-    cursor.execute(
-        "SELECT client_id FROM user_chat_rooms WHERE chat_room_id = %s",
-        (chat_room_id,),
-    )
-    other_client_id = cursor.fetchone()[0]
