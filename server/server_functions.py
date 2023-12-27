@@ -56,3 +56,14 @@ def create_conversation(client_id, partner_id, cursor, connection):
     cursor.execute("UPDATE connections SET partner_id = ? WHERE id = ?", (client_id, partner_id))
     # Commit the changes to the database
     connection.commit()
+
+
+def store_message(sender_id, recipient_id, message, cursor, connection):
+    # Insert the message into the database
+    cursor.execute(
+        "INSERT INTO messages (sender_id, recipient_id, message) VALUES (%s, %s, %s)",
+        (sender_id, recipient_id, message),
+    )
+
+    # Commit the changes to the database
+    connection.commit()
