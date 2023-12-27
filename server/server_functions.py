@@ -81,3 +81,5 @@ def handle_client(client_socket, client_id):
     while True:
         # Receive encrypted messages from the client
         encrypted_message = client_socket.recv(1024)
+        if not encrypted_message:
+            break
