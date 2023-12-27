@@ -39,7 +39,7 @@ def generate_key_pair_for_client():
     return private_key, serialized_public_key
 
 
-def store_connection(cursor, connection, public_key, address, port):
+def store_connection(public_key, address, port, cursor, connection):
     # Insert the public key, address and port of the client into the database
     cursor.execute(
         "INSERT INTO active_connections (public_key, address, port) VALUES (%s, %s, %s)",
