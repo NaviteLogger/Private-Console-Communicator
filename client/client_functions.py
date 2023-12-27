@@ -19,10 +19,12 @@ def read_config():
 
 def connect_to_server():
     # Create a socket to connect to the server
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect((socket.gethostname(), 5555))
+    server_ip, server_port = read_config()
 
-    return sock
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client_socket.connect((server_ip, server_port))
+
+    return client_socket
 
 
 def send_message(sock, message, recipient_public_key):
