@@ -71,5 +71,4 @@ def store_message(sender_id, recipient_id, message, cursor, connection):
 
 def forward_message(sender_id, recipient_id, message, cursor, connection):
     # Forward the message to the recipient
-    cursor.execute("SELECT public_key FROM connections WHERE id = ?", (recipient_id,))
-    recipient_public_key = cursor.fetchone()[0]
+    store_message(sender_id, recipient_id, message, cursor, connection)
