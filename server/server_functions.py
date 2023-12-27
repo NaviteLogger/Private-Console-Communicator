@@ -88,4 +88,4 @@ def handle_client(client_socket, client_id, cursor, connection):
         if encrypted_message.startswith(b"new_conversation"):
             partner_id = int(encrypted_message.split()[1].decode())
             create_conversation(client_id, partner_id, cursor, connection)
-            continue
+            store_connection(client_public_key, client_socket.getpeername()[0], client_socket.getpeername()[1], cursor, connection)
