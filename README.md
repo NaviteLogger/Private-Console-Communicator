@@ -32,6 +32,12 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
+3. Create and fille the .env file according to the .env.example file
+```
+SERVER_HOST='...'
+SERVER_PORT='...'
+```
+
 # Usage
 1. Start the server (server.py file located under the server folder)
 ```
