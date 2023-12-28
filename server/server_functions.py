@@ -4,7 +4,6 @@ from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 import os, sqlite3
 from dotenv import load_dotenv
-from threading import Thread
 
 # Get the environment variables
 load_dotenv()
