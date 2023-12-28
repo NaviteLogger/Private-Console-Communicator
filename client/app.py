@@ -8,3 +8,5 @@ if __name__ == "__main__":
     while True:
         # After establishing a connection with the server, prompt the user with a menu
         print("Welcome to the Private Console Communicator!")
+        print("Please select an option:")
+        print("1. Start a new conversation")
