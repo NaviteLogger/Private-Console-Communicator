@@ -12,7 +12,7 @@ load_dotenv()
 # Connect to the SQLite database
 def connect_to_database():
     # Connect to the SQLite database
-    connection = sqlite3.connect(os.path.join("database", "database.db"))
+    connection = sqlite3.connect(os.path.join("database", "private_comunicator_db.db"))
     cursor = connection.cursor()
 
     return cursor, connection
