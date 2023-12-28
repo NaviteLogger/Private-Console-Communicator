@@ -21,6 +21,10 @@ if __name__ == "__main__":
             # Generate a unique string for the other user to join the conversation
             conversation_id = client_functions.generate_conversation_id(24)
 
+            # Print back the conversation ID to the user
+            print(f"Your conversation ID is {conversation_id}")
+            print("Please share this ID with the person you want to have a conversation with.")
+
         elif option == "/join":
             # If the user selects option 2, join an existing conversation
             print("Joining conversation...")
