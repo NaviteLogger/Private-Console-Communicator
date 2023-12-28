@@ -7,7 +7,7 @@ from cryptography.hazmat.primitives.asymmetric import rsa, padding
 def read_config():
     # Read the config file
     server_ip = config.SERVER_IP
-    server_port = config.SERVER_PORT
+    server_port = int(config.SERVER_PORT) if config.SERVER_PORT is not None else None
 
     return server_ip, server_port
 
