@@ -89,7 +89,7 @@ def handle_client(client_socket, client_id, cursor, connection):
             # Store the encrypted message in the database for forwarding
             cursor.execute("SELECT partner_id FROM connections WHERE id = ?", (client_id,))
             partner_id = cursor.fetchone()[0]
-            store_message(client_id, partner_id, encrypted_message)
+            store_message(client_id, partner_id, encrypted_message, cursor, connection)
 
             # Forward the message to the conversation partner
-            forward_message(client_id, partner_id, encrypted_message)
+            forward_message(client_id, partner_id, encrypted_message, cursor, connection)
