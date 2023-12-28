@@ -19,5 +19,15 @@ This is a simple console messaging app that allows you to send messages to other
 # Installation
 1. Clone the repository
 ```
-git clone 
+git clone https://github.com/NaviteLogger/Private-Console-Communicator.git
+```
+
+(Optional) Create a virtual environment
+```
+python -m venv venv
+```
+
+2. Install the required packages
+```
+pip install -r requirements.txt
 ```
