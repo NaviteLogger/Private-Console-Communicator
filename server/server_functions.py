@@ -2,7 +2,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import padding
-import os, socket, time
+import os, sqlite3
 from dotenv import load_dotenv
 from threading import Thread
 
@@ -10,7 +10,14 @@ from threading import Thread
 load_dotenv()
 
 
-# Connect to the 
+# Connect to the SQLite database
+def connect_to_database():
+    # Connect to the SQLite database
+    connection = sqlite3.connect(os.getenv("DATABASE"))
+    cursor = connection.cursor()
+
+    return cursor, connection
+
 
 def generate_key_pair_for_client():
     # Generate an RSA key pair for the desired client
