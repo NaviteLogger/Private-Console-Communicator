@@ -1,5 +1,7 @@
-import server_functions
-import socket
+import server_functions, socket, dotenv, os
+
+# Load the environment variables from the .env file
+dotenv.load_dotenv()
 
 # Connect to the database
 cursor, connection = server_functions.connect_to_database()
