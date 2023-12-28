@@ -10,3 +10,6 @@ if __name__ == "__main__":
         print("Welcome to the Private Console Communicator!")
         print("Please select an option:")
         print("1. Start a new conversation")
+        print("2. Join a conversation")
+        print("3. Exit")
+        option = input("> ")
