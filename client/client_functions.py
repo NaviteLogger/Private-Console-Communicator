@@ -44,7 +44,7 @@ def generate_key_pair_for_client():
 
 
 def send_message(sock, message, recipient_public_key):
-    # Encrypt the message to be sent with the server's provi
+    # Encrypt the message to be sent with the server's provided public key
     encrypted_message = recipient_public_key.encrypt(message, padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA256()), algorithm=hashes.SHA256(), label=None))
 
     # Send the encrypted message to the server

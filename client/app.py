@@ -1,3 +1,4 @@
+from calendar import c
 import client_functions
 
 if __name__ == "__main__":
@@ -27,6 +28,10 @@ if __name__ == "__main__":
 
             # Generate an RSA key pair for the client
             private_key, serialized_public_key = client_functions.generate_key_pair_for_client()
+
+            # Send the conversation ID and public key to the server
+            client_socket.send(conversation_id.encode())
+            client_socket.send(serialized_public_key)
 
         elif option == "/join":
             # If the user selects option 2, join an existing conversation
