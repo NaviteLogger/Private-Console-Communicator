@@ -38,7 +38,7 @@ connection.commit()
 
 # Create a socket to listen for incoming connections
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_socket.bind((socket.gethostname(), 5555))
+server_socket.bind((os.getenv("SERVER_IP"), int(os.getenv("SERVER_PORT"))))  # type: ignore
 server_socket.listen(5)
 
 print("Server is listening for incoming connections...")
