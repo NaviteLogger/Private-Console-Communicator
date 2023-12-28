@@ -2,7 +2,7 @@ import server_functions
 import socket
 
 # Connect to the database
-cursor, connection = server_functions.connect()
+cursor, connection = server_functions.connect_to_database()
 
 # Create the desired tables:
 cursor.execute(
