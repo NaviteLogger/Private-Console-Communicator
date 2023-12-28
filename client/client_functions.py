@@ -24,9 +24,23 @@ def connect_to_server():
 
 def generate_conversation_id(length):
     # Generate a unique string for the other user to join the conversation
-    conversation_id = ''.join(random.choice(string.ascii_letters + string.digits + string.punctuation) for i in range(length))
+    conversation_id = "".join(random.choice(string.ascii_letters + string.digits + string.punctuation) for i in range(length))
 
     return conversation_id
+
+
+def generate_key_pair_for_client():
+    # Generate an RSA key pair for the desired client
+    private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048, backend=default_backend())
+    public_key = private_key.public_key()
+
+    # Serialize the public key to send to the client
+    serialized_public_key = public_key.public_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PublicFormat.SubjectPublicKeyInfo,
+    )
+
+    return private_key, serialized_public_key
 
 
 def send_message(sock, message, recipient_public_key):

@@ -25,6 +25,9 @@ if __name__ == "__main__":
             print(f"Your conversation ID is {conversation_id}")
             print("Please share this ID with the person you want to have a conversation with.")
 
+            # Generate an RSA key pair for the client
+            private_key, serialized_public_key = client_functions.generate_key_pair_for_client()
+
         elif option == "/join":
             # If the user selects option 2, join an existing conversation
             print("Joining conversation...")
