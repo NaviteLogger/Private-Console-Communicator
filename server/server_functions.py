@@ -12,7 +12,7 @@ load_dotenv()
 # Connect to the SQLite database
 def connect_to_database():
     # Connect to the SQLite database
-    connection = sqlite3.connect(os.getenv("DATABASE"))
+    connection = sqlite3.connect()
     cursor = connection.cursor()
 
     return cursor, connection
