@@ -13,3 +13,7 @@ if __name__ == "__main__":
         print("2. Join a conversation")
         print("3. Exit")
         option = input("> ")
+
+        if option == "1":
+            # If the user selects option 1, start a new conversation
+            print("Starting new conversation...")
