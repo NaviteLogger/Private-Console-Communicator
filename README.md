@@ -39,6 +39,7 @@ SERVER_PORT='...'
 ```
 
 # Usage
+It is important to know that the server and the client must be started in separate terminals. What is more, the communication between the server and the client is done using TCP, so the server firewall must allow the communication on the specified port (in this case, 5555).
 1. Start the server (server.py file located under the server folder)
 ```
 python server.py
