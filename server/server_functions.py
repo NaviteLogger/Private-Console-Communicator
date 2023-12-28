@@ -2,7 +2,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import padding
-import os, socket, time, mysql.connector
+import os, socket, time
 from dotenv import load_dotenv
 from threading import Thread
 
@@ -10,19 +10,7 @@ from threading import Thread
 load_dotenv()
 
 
-# Connect to the MySQL database
-def connect():
-    # Connect to the database
-    connection = mysql.connector.connect(
-        host=os.getenv("MYSQL_DB_HOST"),
-        user=os.getenv("MYSQL_DB_USER"),
-        password=os.getenv("MYSQL_DB_PASSWORD"),
-        port=os.getenv("MYSQL_DB_PORT"),
-        database=os.getenv("MYSQL_DB_DATABASE"),
-    )
-
-    return connection
-
+# Connect to the 
 
 def generate_key_pair_for_client():
     # Generate an RSA key pair for the desired client
