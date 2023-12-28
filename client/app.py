@@ -17,3 +17,12 @@ if __name__ == "__main__":
         if option == "/start":
             # If the user selects option 1, start a new conversation
             print("Starting new conversation...")
+
+        elif option == "/join":
+            # If the user selects option 2, join an existing conversation
+            print("Joining conversation...")
+
+        elif option == "/exit":
+            # If the user selects option 3, exit the program
+            print("Exiting...")
+            break
