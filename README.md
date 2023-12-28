@@ -31,3 +31,14 @@ python -m venv venv
 ```
 pip install -r requirements.txt
 ```
+
+# Usage
+1. Start the server (server.py file located under the server folder)
+```
+python server.py
+```
+
+2. Start the client (app.py file located under the client folder)
+```
+python client.py
+```
