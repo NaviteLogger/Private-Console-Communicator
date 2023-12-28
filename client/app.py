@@ -18,6 +18,9 @@ if __name__ == "__main__":
             # If the user selects option 1, start a new conversation
             print("Starting new conversation...")
 
+            # Generate a unique string for the other user to join the conversation
+            conversation_id = client_functions.generate_conversation_id(24)
+
         elif option == "/join":
             # If the user selects option 2, join an existing conversation
             print("Joining conversation...")

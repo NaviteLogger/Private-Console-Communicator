@@ -1,4 +1,4 @@
-import socket, config
+import socket, config, string, random
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
@@ -20,6 +20,13 @@ def connect_to_server():
     client_socket.connect((server_ip, server_port))
 
     return client_socket
+
+
+def generate_conversation_id(length):
+    # Generate a unique string for the other user to join the conversation
+    conversation_id = ''.join(random.choice(string.ascii_letters + string.digits + string.punctuation) for i in range(length))
+
+    return conversation_id
 
 
 def send_message(sock, message, recipient_public_key):
