@@ -1,5 +1,5 @@
 cffi==1.16.0
-cryptography==41.0.7
+cryptography==42.0.0
 protobuf==4.21.12
 pycparser==2.21
 python-dotenv==1.0.0
